@@ -30,18 +30,20 @@ public class DatabaseInitialSetup implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        // Initialize the database with default data
         initializeDatabase();
     }
 
     private void initializeDatabase(){
         initializeImages();
         initializeArticles();
-        initializeAdmins();
+        initializeUsers();
     }
 
     private void initializeImages(){
+        // Check if there are no images in the repository
         if (imageRepository.count() == 0){
-            // Create and save image entities
+            // Create and save default image entities
             Image image1 = new Image("https://example.com/image1.jpg");
             Image image2 = new Image("https://example.com/image2.jpg");
             Image image3 = new Image("https://example.com/image3.jpg");
@@ -51,15 +53,19 @@ public class DatabaseInitialSetup implements CommandLineRunner {
     }
 
     private void initializeArticles(){
+
+        // Check if there are no articles in the repository
         if (articleRepository.count() == 0){
 
+            // Retrieve all images to associate with articles
             List<Image> images = imageRepository.findAll();
 
+            // Check if there are enough images to create articles
             if (images.size() < 3) {
                 throw new IllegalStateException("Not enough images to create articles.");
             }
 
-            // Create and save article entities
+            // Create and save default article entities
             Article article1 = new Article(
                     "Introduction to Spring Boot",
                     "Spring Boot makes it easy to create stand-alone, production-grade Spring-based Applications.",
@@ -82,10 +88,12 @@ public class DatabaseInitialSetup implements CommandLineRunner {
         }
     }
 
-    private void initializeAdmins(){
+    private void initializeUsers(){
+        // Check if there are no users in the repository
         if (userRepository.count() == 0){
+            // Register default admin and guest users
             userService.registerUser("admin", "password", Role.ADMIN);
-            userService.registerUser("guest", "password1", Role.GUEST);
+            userService.registerUser("guest", "password1", Role.GUEST); // Register GUEST user for test reasons
         }
     }
 

@@ -21,9 +21,17 @@ public class AuthenticationController {
     @Autowired
     private JwtService jwtService;
 
+    // Authenticate the user and generate a JWT token
     @RequestMapping("/login")
-    public ResponseEntity<?> loginAdmin(@RequestBody UserLoginDTO userLoginDTO){
+    public ResponseEntity<?> loginAdmin(@RequestBody UserLoginDTO userLoginDTO) {
+
+        // Authenticate the user using the provided login details
         User authenticatedUser = authenticationService.authenticate(userLoginDTO);
-        return new ResponseEntity<>(jwtService.generateToken(authenticatedUser), HttpStatus.OK);
+
+        // Generate a JWT token for the authenticated user
+        String jwtToken = jwtService.generateToken(authenticatedUser);
+
+        // Return the JWT token with HTTP 200 OK status
+        return new ResponseEntity<>(jwtToken, HttpStatus.OK);
     }
 }

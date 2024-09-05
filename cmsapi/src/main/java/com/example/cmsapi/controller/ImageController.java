@@ -15,14 +15,25 @@ public class ImageController {
     @Autowired
     private ImageService imageService;
 
+    // Upload an image
     @PostMapping
-    public ResponseEntity<?> uploadImage(@Valid @RequestBody Image image){
+    public ResponseEntity<?> uploadImage(@Valid @RequestBody Image image) {
+
+        // Call service method to handle the image upload
         imageService.upload(image);
+
+        // Return a success message with HTTP 200 OK status
         return new ResponseEntity<>("Image successfully uploaded.", HttpStatus.OK);
     }
 
+    // Retrieve an image by its ID
     @GetMapping("/{id}")
-    public ResponseEntity<Image> retrieveImage(@PathVariable Long id){
-        return new ResponseEntity<>(imageService.retrieve(id), HttpStatus.OK);
+    public ResponseEntity<Image> retrieveImage(@PathVariable Long id) {
+
+        // Call service method to get the image by ID
+        Image image = imageService.retrieve(id);
+
+        // Return the retrieved image with HTTP 200 OK status
+        return new ResponseEntity<>(image, HttpStatus.OK);
     }
 }

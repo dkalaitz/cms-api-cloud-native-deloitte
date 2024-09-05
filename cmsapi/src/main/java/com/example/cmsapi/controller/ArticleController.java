@@ -19,32 +19,50 @@ public class ArticleController {
     @Autowired
     private ArticleService articleService;
 
+    // Retrieve all articles
     @GetMapping
-    public ResponseEntity<List<Article>> retrieveAllArticles(){
+    public ResponseEntity<List<Article>> retrieveAllArticles() {
+        // Call the service to get all articles and return with HTTP 200 OK status
         return ResponseEntity.ok(articleService.retrieveAll());
     }
 
+    // Retrieve a specific article by its ID
     @GetMapping("/{id}")
-    public ResponseEntity<?> retrieveArticleById(@PathVariable Long id){
+    public ResponseEntity<?> retrieveArticleById(@PathVariable Long id) {
+        // Call the service to get the article by ID and return with HTTP 200 OK status
         return ResponseEntity.ok(articleService.retrieveById(id));
     }
 
+    // Create a new article
     @PostMapping
     public ResponseEntity<?> createArticle(@Valid @RequestBody ArticleDTO articleDTO) {
+
+        // Call the service to create a new article
         articleService.create(articleDTO);
-        // Return a ResponseEntity with HTTP status 201 Created
-        return new ResponseEntity<>("Article successfully created.",HttpStatus.CREATED);
+
+        // Return a message with HTTP 201 Created status
+        return new ResponseEntity<>("Article successfully created.", HttpStatus.CREATED);
     }
 
+    // Update an existing article
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateArticle(@PathVariable Long id, @Valid @RequestBody ArticleDTO updatedArticleDetails){
+    public ResponseEntity<?> updateArticle(@PathVariable Long id, @Valid @RequestBody ArticleDTO updatedArticleDetails) {
+
+        // Call the service to update the article with the given ID
         articleService.update(id, updatedArticleDetails);
+
+        // Return a message with HTTP 200 OK status
         return new ResponseEntity<>("Article successfully updated.", HttpStatus.OK);
     }
 
+    // Delete an article by its ID
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteArticle(@PathVariable Long id){
+    public ResponseEntity<?> deleteArticle(@PathVariable Long id) {
+
+        // Call the service to delete the article with the given ID
         articleService.delete(id);
+
+        // Return a message with HTTP 200 OK status
         return new ResponseEntity<>("Successfully deleted article.", HttpStatus.OK);
     }
 }

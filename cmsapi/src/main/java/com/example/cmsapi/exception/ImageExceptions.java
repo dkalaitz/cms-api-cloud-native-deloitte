@@ -9,8 +9,8 @@ public class ImageExceptions {
     }
 
     public static class ImageExistsException extends RuntimeException{
-        public ImageExistsException() {
-            super();
+        public ImageExistsException(String message) {
+            super(message);
         }
     }
 }
