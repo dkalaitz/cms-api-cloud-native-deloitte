@@ -1,9 +1,13 @@
-package com.example.cmsapi.article;
+package com.example.cmsapi.controller;
 
+import com.example.cmsapi.model.Article;
+import com.example.cmsapi.dto.ArticleDTO;
+import com.example.cmsapi.service.ArticleService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,15 +31,15 @@ public class ArticleController {
 
     @PostMapping
     public ResponseEntity<?> createArticle(@Valid @RequestBody ArticleDTO articleDTO) {
-        Article createdArticle = articleService.create(articleDTO);
-        // Return a ResponseEntity with the created article and HTTP status 201 Created
-        return new ResponseEntity<>(createdArticle,HttpStatus.CREATED);
+        articleService.create(articleDTO);
+        // Return a ResponseEntity with HTTP status 201 Created
+        return new ResponseEntity<>("Article successfully created.",HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<?> updateArticle(@PathVariable Long id, @Valid @RequestBody ArticleDTO updatedArticleDetails){
-        Article updatedArticle = articleService.update(id, updatedArticleDetails);
-        return new ResponseEntity<>(updatedArticle, HttpStatus.OK);
+        articleService.update(id, updatedArticleDetails);
+        return new ResponseEntity<>("Article successfully updated.", HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")

@@ -1,6 +1,5 @@
-package com.example.cmsapi.image;
+package com.example.cmsapi.model;
 
-import com.example.cmsapi.article.Article;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;

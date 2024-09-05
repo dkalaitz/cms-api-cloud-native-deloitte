@@ -1,4 +1,4 @@
-package com.example.cmsapi.exceptions;
+package com.example.cmsapi.exception;
 
 public class ImageExceptions {
 

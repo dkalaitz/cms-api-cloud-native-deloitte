@@ -1,4 +1,4 @@
-package com.example.cmsapi.article;
+package com.example.cmsapi.dto;
 
 import jakarta.validation.constraints.NotEmpty;
 

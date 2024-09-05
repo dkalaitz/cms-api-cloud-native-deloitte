@@ -1,5 +1,6 @@
-package com.example.cmsapi.image;
+package com.example.cmsapi.repository;
 
+import com.example.cmsapi.model.Image;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

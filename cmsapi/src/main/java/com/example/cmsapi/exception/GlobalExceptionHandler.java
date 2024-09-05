@@ -1,4 +1,4 @@
-package com.example.cmsapi.exceptions;
+package com.example.cmsapi.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

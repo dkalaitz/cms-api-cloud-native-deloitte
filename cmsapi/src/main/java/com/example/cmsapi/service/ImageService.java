@@ -1,6 +1,8 @@
-package com.example.cmsapi.image;
+package com.example.cmsapi.service;
 
-import com.example.cmsapi.exceptions.ImageExceptions;
+import com.example.cmsapi.exception.ImageExceptions;
+import com.example.cmsapi.model.Image;
+import com.example.cmsapi.repository.ImageRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

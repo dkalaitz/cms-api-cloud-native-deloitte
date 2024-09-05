@@ -1,5 +1,7 @@
-package com.example.cmsapi.image;
+package com.example.cmsapi.controller;
 
+import com.example.cmsapi.model.Image;
+import com.example.cmsapi.service.ImageService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

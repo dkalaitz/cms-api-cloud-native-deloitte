@@ -1,6 +1,5 @@
-package com.example.cmsapi.article;
+package com.example.cmsapi.model;
 
-import com.example.cmsapi.image.Image;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 
@@ -23,6 +22,8 @@ public class Article {
     @ManyToOne
     @JoinColumn(name = "image_id")
     private Image image;
+
+    public Article(){};
 
     public Article(String title, String content, Image image) {
         this.title = title;
