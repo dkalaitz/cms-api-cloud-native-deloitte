@@ -2,8 +2,8 @@ package com.example.cms_api;
 
 import com.example.cms_api.article.Article;
 import com.example.cms_api.article.ArticleRepository;
-import com.example.cms_api.images.Image;
-import com.example.cms_api.images.ImageRepository;
+import com.example.cms_api.image.Image;
+import com.example.cms_api.image.ImageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -28,28 +28,31 @@ public class DatabaseInitialSetup implements CommandLineRunner {
         Image image2 = new Image("https://example.com/image2.jpg");
         Image image3 = new Image("https://example.com/image3.jpg");
 
-        imageRepository.save(image1);
-        imageRepository.save(image2);
-        imageRepository.save(image3);
-
         Article article1 = new Article(
                 "Introduction to Spring Boot",
                 "Spring Boot makes it easy to create stand-alone, production-grade Spring-based Applications.",
-                "https://example.com/image1.jpg"
+                image1
         );
 
         Article article2 = new Article(
                 "REST API with Spring Boot",
                 "Learn how to create a REST API using Spring Boot.",
-                "https://example.com/image2.jpg"
+                image2
         );
 
         Article article3 = new Article(
                 "Deploying Spring Boot Applications",
                 "This article covers the best practices for deploying Spring Boot applications.",
-                "https://example.com/image3.jpg"
+                image3
         );
 
+
+        // Save images
+        imageRepository.save(image1);
+        imageRepository.save(image2);
+        imageRepository.save(image3);
+
+        // Save articles
         articleRepository.save(article1);
         articleRepository.save(article2);
         articleRepository.save(article3);

@@ -1,9 +1,13 @@
 package com.example.cms_api.article;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/articles")
@@ -12,33 +16,32 @@ public class ArticleController {
     @Autowired
     private ArticleService articleService;
 
-    @GetMapping("/home")
-    public String home(){
-        return "Hello World";
-    }
-
     @PostMapping
-    public void createArticle(@RequestBody Article article){
-        articleService.create(article);
+    public ResponseEntity<?> createArticle(@Valid @RequestBody ArticleDTO articleDTO) {
+        Article createdArticle = articleService.create(articleDTO);
+        // Return a ResponseEntity with the created article and HTTP status 201 Created
+        return new ResponseEntity<>(createdArticle,HttpStatus.CREATED);
     }
 
     @GetMapping
-    public List<Article> retrieveAllArticles(){
-        return articleService.retrieveAll();
+    public ResponseEntity<List<Article>> retrieveAllArticles(){
+        return ResponseEntity.ok(articleService.retrieveAll());
     }
 
     @GetMapping("/{id}")
-    public Article retrieveArticleById(@PathVariable Long id){
-        return articleService.retrieveById(id);
+    public ResponseEntity<?> retrieveArticleById(@PathVariable Long id){
+        return ResponseEntity.ok(articleService.retrieveById(id));
     }
 
     @PutMapping("/{id}")
-    public void updateArticle(@PathVariable Long id, @RequestBody Article updatedArticle){
-        articleService.update(id, updatedArticle);
+    public ResponseEntity<?> updateArticle(@PathVariable Long id, @Valid @RequestBody ArticleDTO updatedArticleDetails){
+        Article updatedArticle = articleService.update(id, updatedArticleDetails);
+        return new ResponseEntity<>(updatedArticle, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteArticle(@PathVariable Long id){
+    public ResponseEntity<?> deleteArticle(@PathVariable Long id){
         articleService.delete(id);
+        return new ResponseEntity<>("Successfully deleted article.", HttpStatus.OK);
     }
 }

@@ -1,6 +1,8 @@
 package com.example.cms_api.article;
 
+import com.example.cms_api.image.Image;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "articles")
@@ -10,23 +12,27 @@ public class Article {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotEmpty(message = "Title cannot be blank or null")
     private String title;
 
     @Column(columnDefinition = "TEXT")
+    @NotEmpty(message = "Content cannot be blank or null")
     private String content;
 
-    private String image;
+    @ManyToOne
+    @JoinColumn(name = "image_id")
+    private Image image;
 
     // Default Constructor
     public Article(){};
 
-    public Article(String title, String content, String image) {
+    public Article(String title, String content, Image image) {
         this.title = title;
         this.content = content;
         this.image = image;
     }
 
-    public void setAllDetails(String title, String content, String image){
+    public void setAllDetails(String title, String content, Image image){
         this.title = title;
         this.content = content;
         this.image = image;
@@ -56,13 +62,12 @@ public class Article {
         this.content = content;
     }
 
-    public String getImage() {
+    public Image getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(Image image) {
         this.image = image;
     }
-
 
 }
