@@ -93,7 +93,7 @@ public class DatabaseInitialSetup implements CommandLineRunner {
         if (userRepository.count() == 0){
             // Register default admin and guest users
             userService.registerUser("admin", "password", Role.ADMIN);
-            userService.registerUser("guest", "password1", Role.GUEST); // Register GUEST user for test reasons
+            userService.registerUser("guest", "password", Role.GUEST); // Register GUEST user for test reasons
         }
     }
 
