@@ -24,7 +24,7 @@ public class SwaggerConfig {
     @Bean
     OpenAPI customOpenAPI(){
         return new OpenAPI()
-                .info(new Info().title("CMS API").version("API version"))
+                .info(new Info().title("Deloitte Cloud Native Challenge - CMS API").version("API version"))
                 .addSecurityItem(new SecurityRequirement().addList("bearerAuth"))
                 .components(
                         new Components()
