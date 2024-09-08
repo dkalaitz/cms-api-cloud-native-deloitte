@@ -1,4 +1,4 @@
-package com.example.cmsapi.config.security;
+package com.example.cmsapi.config;
 
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;

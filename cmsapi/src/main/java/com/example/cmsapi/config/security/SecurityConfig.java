@@ -1,5 +1,7 @@
 package com.example.cmsapi.config.security;
 
+import com.example.cmsapi.errors.handlers.CustomAccessDeniedHandler;
+import com.example.cmsapi.errors.handlers.CustomAuthenticationEntryPoint;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,6 +21,12 @@ public class SecurityConfig {
 
     @Autowired
     private JwtAuthenticationFilter jwtAuthenticationFilter;
+
+    @Autowired
+    private CustomAccessDeniedHandler customAccessDeniedHandler;
+
+    @Autowired
+    private CustomAuthenticationEntryPoint customAuthenticationEntryPoint;
 
     private static final String[] SWAGGER_WHITELIST = {
             "/swagger-ui/**",
@@ -52,6 +60,10 @@ public class SecurityConfig {
                         .anyRequest()
                         .hasRole("ADMIN");
                 })
+                .exceptionHandling(exception -> exception
+                        .accessDeniedHandler(customAccessDeniedHandler)
+                        .authenticationEntryPoint(customAuthenticationEntryPoint))
+
                 // Configure session management to be stateless
                 .sessionManagement(c -> c.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 

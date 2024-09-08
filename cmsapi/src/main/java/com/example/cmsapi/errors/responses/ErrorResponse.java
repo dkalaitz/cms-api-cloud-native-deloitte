@@ -1,11 +1,11 @@
-package com.example.cmsapi.errors.errorresponses;
+package com.example.cmsapi.errors.responses;
 
 public class ErrorResponse {
     private String error;
     private String message;
 
-    public ErrorResponse(String errorCode, String message) {
-        this.error = errorCode;
+    public ErrorResponse(String error, String message) {
+        this.error = error;
         this.message = message;
     }
 

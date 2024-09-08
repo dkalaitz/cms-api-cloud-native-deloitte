@@ -1,7 +1,7 @@
 package com.example.cmsapi.controllers;
 
-import com.example.cmsapi.errors.errorresponses.ErrorResponse;
-import com.example.cmsapi.errors.errorresponses.ValidationErrorResponse;
+import com.example.cmsapi.errors.responses.ErrorResponse;
+import com.example.cmsapi.errors.responses.ValidationErrorResponse;
 import com.example.cmsapi.model.Article;
 import com.example.cmsapi.dto.ArticleDTO;
 import com.example.cmsapi.services.ArticleService;
@@ -115,12 +115,38 @@ public class ArticleController {
                                     description = "Validation error response structure"
                             ),
                             examples = @ExampleObject(
-                                    value = "{ \"errors\": [\"Title cannot be blank or null\", \"Image cannot be blank or null\"] }"
+                                    value = "{ \"error\": \"VALIDATION_ERROR\", \"messages\": [\"Title cannot be blank or null\", \"Content cannot be blank or null\"] }"
                             )
                     )
             ),
-            @ApiResponse(responseCode = "401", description = "Unauthorized. Invalid JWT Token"),
-            @ApiResponse(responseCode = "403", description = "Access Forbidden. Missing JWT token"),
+            @ApiResponse(
+                    responseCode = "401",
+                    description = "Unauthorized - Authentication is required to access this resource",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(
+                                    implementation = ErrorResponse.class,
+                                    description = "Unauthorized error response structure"
+                            ),
+                            examples = @ExampleObject(
+                                    value = "{ \"error\": \"UNAUTHORIZED\", \"message\": \"You are not authorized to access this resource.\" }"
+                            )
+                    )
+            ),
+            @ApiResponse(
+                    responseCode = "403",
+                    description = "Forbidden - Access is denied",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(
+                                    implementation = ErrorResponse.class,
+                                    description = "Forbidden error response structure"
+                            ),
+                            examples = @ExampleObject(
+                                    value = "{ \"error\": \"FORBIDDEN\", \"message\": \"You do not have permission to access this resource.\" }"
+                            )
+                    )
+            ),
             @ApiResponse(responseCode = "404",
                     content = @Content(
                             mediaType = "application/json",
@@ -176,12 +202,38 @@ public class ArticleController {
                                     description = "Validation error response structure"
                             ),
                             examples = @ExampleObject(
-                                    value = "{ \"errors\": [\"Title cannot be blank or null\", \"Image cannot be blank or null\"] }"
+                                    value = "{ \"error\": \"VALIDATION_ERROR\", \"messages\": [\"Title cannot be blank or null\", \"Content cannot be blank or null\"] }"
                             )
                     )
             ),
-            @ApiResponse(responseCode = "401", description = "Unauthorized. Invalid JWT Token"),
-            @ApiResponse(responseCode = "403", description = "Access Forbidden. Missing JWT token"),
+            @ApiResponse(
+                    responseCode = "401",
+                    description = "Unauthorized - Authentication is required to access this resource",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(
+                                    implementation = ErrorResponse.class,
+                                    description = "Unauthorized error response structure"
+                            ),
+                            examples = @ExampleObject(
+                                    value = "{ \"error\": \"UNAUTHORIZED\", \"message\": \"You are not authorized to access this resource.\" }"
+                            )
+                    )
+            ),
+            @ApiResponse(
+                    responseCode = "403",
+                    description = "Forbidden - Access is denied",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(
+                                    implementation = ErrorResponse.class,
+                                    description = "Forbidden error response structure"
+                            ),
+                            examples = @ExampleObject(
+                                    value = "{ \"error\": \"FORBIDDEN\", \"message\": \"You do not have permission to access this resource.\" }"
+                            )
+                    )
+            ),
             @ApiResponse(responseCode = "404",
                     content = @Content(
                             mediaType = "application/json",
@@ -223,8 +275,34 @@ public class ArticleController {
                     description = "Successfully deleted article.",
                     content = @Content(mediaType = "application/json",
                             schema = @Schema(implementation = Article.class))),
-            @ApiResponse(responseCode = "401", description = "Unauthorized. Invalid JWT Token"),
-            @ApiResponse(responseCode = "403", description = "Access Forbidden. Missing JWT token"),
+            @ApiResponse(
+                    responseCode = "401",
+                    description = "Unauthorized - Authentication is required to access this resource",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(
+                                    implementation = ErrorResponse.class,
+                                    description = "Unauthorized error response structure"
+                            ),
+                            examples = @ExampleObject(
+                                    value = "{ \"error\": \"UNAUTHORIZED\", \"message\": \"You are not authorized to access this resource.\" }"
+                            )
+                    )
+            ),
+            @ApiResponse(
+                    responseCode = "403",
+                    description = "Forbidden - Access is denied",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(
+                                    implementation = ErrorResponse.class,
+                                    description = "Forbidden error response structure"
+                            ),
+                            examples = @ExampleObject(
+                                    value = "{ \"error\": \"FORBIDDEN\", \"message\": \"You do not have permission to access this resource.\" }"
+                            )
+                    )
+            ),
             @ApiResponse(responseCode = "404",
                     content = @Content(
                             mediaType = "application/json",
