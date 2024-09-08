@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   app:
-    image: cmsapi
+    image: dkalaitz/cms-api:latest
     environment:
       - SPRING_PROFILES_ACTIVE=docker
       - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/cms_db
@@ -17,8 +17,6 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: cms_db
-      MYSQL_USER: root
-      MYSQL_PASSWORD: password
     ports:
       - "3306:3306"
     volumes:
