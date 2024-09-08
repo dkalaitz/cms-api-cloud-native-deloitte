@@ -1,4 +1,4 @@
-package com.example.cmsapi.exception;
+package com.example.cmsapi.errors.exceptions;
 
 public class UserExceptions {
 

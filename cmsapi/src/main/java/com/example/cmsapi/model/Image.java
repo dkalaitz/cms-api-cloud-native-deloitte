@@ -2,6 +2,7 @@ package com.example.cmsapi.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 
@@ -15,6 +16,7 @@ public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "image_id")
+    @Schema(requiredMode = Schema.RequiredMode.NOT_REQUIRED)
     private Long id;
 
     @JsonProperty("image")

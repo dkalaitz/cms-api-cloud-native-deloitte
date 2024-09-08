@@ -1,5 +1,6 @@
 package com.example.cmsapi.model;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 
@@ -10,6 +11,7 @@ public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "article_id")
+    @Schema(requiredMode = Schema.RequiredMode.NOT_REQUIRED)
     private Long id;
 
     @NotEmpty(message = "Title cannot be blank or null")

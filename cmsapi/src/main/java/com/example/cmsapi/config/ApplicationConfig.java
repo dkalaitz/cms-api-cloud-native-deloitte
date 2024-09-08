@@ -1,6 +1,6 @@
 package com.example.cmsapi.config;
 
-import com.example.cmsapi.repository.UserRepository;
+import com.example.cmsapi.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

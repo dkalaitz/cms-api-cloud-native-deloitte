@@ -1,6 +1,7 @@
 package com.example.cmsapi.model;
 
 import com.example.cmsapi.enumeration.Role;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -18,6 +19,7 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
+    @Schema(requiredMode = Schema.RequiredMode.NOT_REQUIRED)
     private Long userId;
 
     @NotEmpty(message = "Username should not be null or blank")

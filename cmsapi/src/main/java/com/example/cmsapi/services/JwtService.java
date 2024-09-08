@@ -1,4 +1,4 @@
-package com.example.cmsapi.service;
+package com.example.cmsapi.services;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

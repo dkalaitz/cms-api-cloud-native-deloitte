@@ -1,8 +1,7 @@
-package com.example.cmsapi.repository;
+package com.example.cmsapi.repositories;
 
 import com.example.cmsapi.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 

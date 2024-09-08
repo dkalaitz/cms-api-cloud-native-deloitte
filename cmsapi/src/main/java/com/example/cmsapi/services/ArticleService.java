@@ -1,9 +1,9 @@
-package com.example.cmsapi.service;
+package com.example.cmsapi.services;
 
 import com.example.cmsapi.model.Article;
 import com.example.cmsapi.dto.ArticleDTO;
-import com.example.cmsapi.repository.ArticleRepository;
-import com.example.cmsapi.exception.ArticleExceptions;
+import com.example.cmsapi.repositories.ArticleRepository;
+import com.example.cmsapi.errors.exceptions.ArticleExceptions;
 import com.example.cmsapi.model.Image;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,29 +27,29 @@ public class ArticleService {
     // Retrieve article based on ID
     public Article retrieveById(Long id) {
         return articleRepository.findById(id)
-                .orElseThrow(() -> new ArticleExceptions.ArticleNotFoundException("Article not found for ID: " + id));
+                .orElseThrow(() -> new ArticleExceptions.ArticleNotFoundException("The article with the specified ID does not exist."));
     }
 
     // Create an Article
     @Transactional
-    public void create(ArticleDTO articleDTO) {
+    public Article create(ArticleDTO articleDTO) {
 
         // Retrieve the image based on the image path from the DTO
         Image articleImage = imageService.retrieveByImagePath(articleDTO.getImage());
 
         // Save the new article to the repository
-        articleRepository.save(new Article(articleDTO.getTitle(),
+        return articleRepository.save(new Article(articleDTO.getTitle(),
                 articleDTO.getContent(),
                 articleImage));
     }
 
     // Update an existing article by its ID
     @Transactional
-    public void update(Long id, ArticleDTO updatedArticle) {
+    public Article update(Long id, ArticleDTO updatedArticle) {
 
         // Retrieve the article by ID or throw an exception if not found
         Article article = articleRepository.findById(id)
-                .orElseThrow(() -> new ArticleExceptions.ArticleNotFoundException("Article not found for ID: " + id));
+                .orElseThrow(() -> new ArticleExceptions.ArticleNotFoundException("The article with the specified ID does not exist."));
 
         // Retrieve the updated image based on the image path from the DTO
         Image updatedImage = imageService.retrieveByImagePath(updatedArticle.getImage());
@@ -60,7 +60,7 @@ public class ArticleService {
                 updatedImage);
 
         // Save the updated article to the repository
-        articleRepository.save(article);
+        return articleRepository.save(article);
     }
 
     // Delete article based on ID
@@ -69,7 +69,7 @@ public class ArticleService {
 
         // Check if article already exists
         if (!articleRepository.existsById(id)){
-            throw new ArticleExceptions.ArticleNotFoundException("Article not found for ID: " + id);
+            throw new ArticleExceptions.ArticleNotFoundException("The article with the specified ID does not exist.");
         }
 
         // Delete Article from the repository

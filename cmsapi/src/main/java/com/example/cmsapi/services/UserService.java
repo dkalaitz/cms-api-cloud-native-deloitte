@@ -1,9 +1,9 @@
-package com.example.cmsapi.service;
+package com.example.cmsapi.services;
 
 import com.example.cmsapi.enumeration.Role;
-import com.example.cmsapi.exception.UserExceptions;
+import com.example.cmsapi.errors.exceptions.UserExceptions;
 import com.example.cmsapi.model.User;
-import com.example.cmsapi.repository.UserRepository;
+import com.example.cmsapi.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

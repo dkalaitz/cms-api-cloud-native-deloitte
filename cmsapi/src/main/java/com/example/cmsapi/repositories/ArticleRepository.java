@@ -1,4 +1,4 @@
-package com.example.cmsapi.repository;
+package com.example.cmsapi.repositories;
 
 import com.example.cmsapi.model.Article;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -1,12 +1,12 @@
 package com.example.cmsapi.config;
 
 import com.example.cmsapi.model.Article;
-import com.example.cmsapi.repository.ArticleRepository;
+import com.example.cmsapi.repositories.ArticleRepository;
 import com.example.cmsapi.model.Image;
-import com.example.cmsapi.repository.ImageRepository;
+import com.example.cmsapi.repositories.ImageRepository;
 import com.example.cmsapi.enumeration.Role;
-import com.example.cmsapi.repository.UserRepository;
-import com.example.cmsapi.service.UserService;
+import com.example.cmsapi.repositories.UserRepository;
+import com.example.cmsapi.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;

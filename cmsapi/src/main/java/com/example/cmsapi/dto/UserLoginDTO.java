@@ -1,8 +1,12 @@
 package com.example.cmsapi.dto;
 
+import jakarta.validation.constraints.NotEmpty;
+
 public class UserLoginDTO {
 
+    @NotEmpty(message = "Username should not be null or blank")
     private String username;
+    @NotEmpty(message = "Password should not be null or blank")
     private String password;
 
     public UserLoginDTO(String username, String password) {

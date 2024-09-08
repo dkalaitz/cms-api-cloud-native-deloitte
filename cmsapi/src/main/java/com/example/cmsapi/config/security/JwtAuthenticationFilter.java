@@ -1,6 +1,6 @@
 package com.example.cmsapi.config.security;
 
-import com.example.cmsapi.service.JwtService;
+import com.example.cmsapi.services.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -31,15 +31,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     @Autowired
     private UserDetailsService userDetailsService;
 
-    /**
-     * Processes the request to check for a valid JWT token and sets the authentication in the context.
-     *
-     * @param request   The HTTP request.
-     * @param response  The HTTP response.
-     * @param filterChain The filter chain to pass the request and response to.
-     * @throws ServletException if a servlet-related error occurs.
-     * @throws IOException if an I/O error occurs.
-     */
+    // Processes the request to check for a valid JWT token and sets the authentication in the context.
     @Override
     protected void doFilterInternal(
             @NonNull HttpServletRequest request,
@@ -91,6 +83,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         } catch (Exception exception) {
             // Handle exceptions and resolve errors
             handlerExceptionResolver.resolveException(request, response, null, exception);
+            // Set response status to unauthorized
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         }
     }
 

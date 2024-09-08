@@ -20,6 +20,13 @@ public class SecurityConfig {
     @Autowired
     private JwtAuthenticationFilter jwtAuthenticationFilter;
 
+    private static final String[] SWAGGER_WHITELIST = {
+            "/swagger-ui/**",
+            "/v3/api-docs/**",
+            "/swagger-resources/**",
+            "/swagger-resources"
+    };
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
@@ -29,12 +36,16 @@ public class SecurityConfig {
                 // Configure request authorization
                 .authorizeHttpRequests(auth -> {auth
 
+                        // Allow all access to Swagger paths
+                        .requestMatchers(SWAGGER_WHITELIST)
+                        .permitAll()
+
                         // Allow all POST requests to /api/auth/**
                         .requestMatchers(HttpMethod.POST, "/api/auth/**")
                         .permitAll()
 
                         // Allow all GET requests to /api/**
-                        .requestMatchers(HttpMethod.GET, "api/**")
+                        .requestMatchers(HttpMethod.GET, "/api/**")
                         .permitAll()
 
                         // Require ADMIN role for all other requests
