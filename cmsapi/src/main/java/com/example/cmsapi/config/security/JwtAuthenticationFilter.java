@@ -85,7 +85,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             handlerExceptionResolver.resolveException(request, response, null, exception);
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             response.setContentType("application/json");
-            response.getWriter().write("{\"error\": \"FORBIDDEN\", \"message\": \"You do not have permission to access this resource.\"}");
+            response.getWriter().write("{\"error\": \"UNAUTHORIZED\", \"message\": \"You are not authorized to access this resource.\"}");
             response.getWriter().flush();
         }
     }
