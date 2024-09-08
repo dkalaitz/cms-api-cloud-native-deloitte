@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   app:
-    image: cms-api
+    image: cmsapi
     environment:
       - SPRING_PROFILES_ACTIVE=docker
       - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/cms_db
