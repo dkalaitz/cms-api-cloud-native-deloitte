@@ -257,6 +257,7 @@ public class ArticleController {
         return new ResponseEntity<>(updatedArticle, HttpStatus.OK);
     }
 
+    // Delete an article by its ID
     @Operation(
             summary = "Delete an existing article",
             description = """
@@ -310,7 +311,6 @@ public class ArticleController {
                                     value = "{ \"error\": \"RESOURCE_NOT_FOUND\", \"message\": \"The article with the specified ID does not exist.\" }")
                     ))
     })
-    // Delete an article by its ID
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteArticle(@PathVariable Long id) {
 
