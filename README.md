@@ -62,7 +62,17 @@ A Docker image of the application is also available on Docker Hub, making it eas
 ## Running the Application
 ### Prerequisites
 - Ensure you have ```Java 21``` and ```Maven``` Installed
+- Ensure you have a MySQL server running. You can use XAMPP to start a MySQL server locally.
 - Docker installed for running the application via Docker
+### Setting Up MySQL
+1. Download and install XAMPP
+2. Start MySQL server:
+   - Open the XAMPP Control Panel
+   - Clicke the "Start" button next to Apache.
+   - Click the "Start" button next to MySQL to start the MySQL server.
+3. Create a new database:
+   - Open `phpMyAdmin` (accessible from the XAMPP Control Panel).
+   - Create a database named cms_db
 ### Running Locally
 1. Clone the repository: <br>
 `git clone https://github.com/dkalaitz/cms-api-cloud-native-deloitte.git`
