@@ -1,4 +1,4 @@
-# CMS REST API
+# Deloitte Cloud Native Challenge
 ## Overview
 This project is a basic Content Management System (CMS) application developed as a REST API using Spring Boot. The API allows users to perform CRUD (Create, Read, Update, Delete) operations on articles and manage images associated with those articles. It also includes JWT user authentication.
 
